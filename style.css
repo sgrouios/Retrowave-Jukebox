@@ -1,0 +1,118 @@
+@font-face {
+    font-family: "Cyberspace Raceway";
+    src: url(assets/fonts/cyberspace_raceway/Cyberspace\ Raceway\ Back.otf) format('opentype');
+}
+
+@font-face {
+    font-family: "Digital-7";
+    src: url(assets/fonts/digital-7/digital-7.ttf) format('truetype');
+}
+
+/*Span information text across five columns and change z-index, align text right of 1st column*/
+@keyframes left_to_right{
+    from{
+        margin-left: -65%;/*change grid-area position and justify-item*/
+    }
+    to{
+        margin-left: 125%;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+body { 
+    background-image: url("assets/background/retrowave-background.jpg");
+    background-size: cover;
+}
+
+.jukebox {
+    align-items: center;
+    background-image: url("assets/images/carbon-fiber.png");
+    border-radius: 500px;
+    display: grid;
+    grid-template: repeat(3, 1fr) / 1fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 1fr;
+    height: 200px;
+    width: 700px;
+    border: 2px #423d3c solid;
+    margin: 0 auto;
+    margin-top: 25%;
+    justify-items: center;
+}
+
+.timer {
+    background-color: #393942;
+    border: 2px solid black;
+    color: aqua;/*#8b9ead*/
+    font-family: Digital-7;
+    font-size: 28px;
+    grid-area: 1 / 5 / span 1 / span 1;
+    padding: 3px;
+    width: 70px;
+    text-align: center;
+    align-self: end;
+}
+
+.info {
+    background-color: #393942;
+    border: 2px solid black;
+    color: aqua;
+    font-family: Cyberspace Raceway;
+    font-size: 12px;
+    grid-area: 2 / 4 / span 1 / span 3;
+    height: 60%;
+    width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.info p {
+    animation: left_to_right 10s linear;
+    animation-iteration-count: infinite;
+}
+.jukebox-button {
+    background-color: blueviolet;
+    border: 1px solid aqua;
+    margin: 6px;
+    height: 30%;
+    width: 88%;
+}
+
+.jukebox-button:hover {
+    cursor: pointer;
+    height: 35%;
+    width: 93%;
+}
+
+.jukebox-button i{
+    color: aqua;
+}
+
+#step-backward {
+    grid-area: 2 / 2 / span 1 / span 1;
+}
+
+#rewind {
+    grid-area: 2 / 3 / span 1 / span 1;
+}
+#stop {
+    grid-area: 3 / 4 / span 1 / span 1;
+}
+#play {
+    grid-area: 3 / 5 / span 1 / span 1;
+}
+#pause {
+    grid-area: 3 / 6 / span 1 / span 1;
+}
+#forward {
+    grid-area: 2 / 7 / span 1 / span 1;
+}
+#step-forward {
+    grid-area: 2 / 8 / span 1 / span 1;
+}
+#stop, #play, #pause {
+    position: relative;
+    top: -20px;
+}

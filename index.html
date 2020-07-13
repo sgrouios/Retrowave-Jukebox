@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Retrowave Jukebox</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="assets/icons/font-awesome-4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <div class="jukebox">
+        <div class=timer><span id="songTime"></span></div><!---Why does changing #songTime to <p> change things?-->
+        <button type="button" class="jukebox-button" id="step-backward">
+          <i class="fa fa-step-backward" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="jukebox-button" id="rewind">
+          <i class="fa fa-backward" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="jukebox-button" id="stop">
+          <i class="fa fa-stop" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="jukebox-button" id="pause">
+          <i class="fa fa-pause" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="jukebox-button" id="play">
+          <i class="fa fa-play" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="jukebox-button" id="forward">
+          <i class="fa fa-forward" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="jukebox-button" id="step-forward">
+          <i class="fa fa-step-forward" aria-hidden="true"></i>
+        </button>
+        <div class="info"><p id="song-name">Retrowave Jukebox</p></div>
+    </div>
+</body>
+</html>

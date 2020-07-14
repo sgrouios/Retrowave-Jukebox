@@ -8,13 +8,34 @@
     src: url(assets/fonts/digital-7/digital-7.ttf) format('truetype');
 }
 
-/*Span information text across five columns and change z-index, align text right of 1st column*/
 @keyframes left_to_right{
-    from{
-        margin-left: -65%;/*change grid-area position and justify-item*/
+    0%{
+       -webkit-transform: translateX(-100%);
+       transform: translateX(-100%);
     }
-    to{
-        margin-left: 125%;
+    100%{
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+}
+
+@keyframes displaySettings{
+    0%{
+       height: 0px;
+    }
+    100%{
+        height: 40px;
+    }
+}
+
+@keyframes removeSettings{
+    0%{
+       height: 40px;
+       visibility: visible;
+    }
+    100%{
+        height: 0px;
+        visibility: hidden;
     }
 }
 
@@ -69,7 +90,7 @@ body {
 }
 
 .info p {
-    animation: left_to_right 10s linear;
+    animation: left_to_right 14s linear;
     animation-iteration-count: infinite;
 }
 .jukebox-button {
@@ -88,6 +109,54 @@ body {
 
 .jukebox-button i{
     color: aqua;
+}
+
+#settings {
+    cursor: pointer;
+    color: grey;
+    justify-self: end;
+    grid-area: 3  / 2 / span 1 / span 1;
+}
+
+#volume {
+    cursor: pointer;
+    grid-area: 3 / 7 / span 1 / span 2;
+    opacity: 0.7;
+}
+
+input + p {
+    color: aqua;
+    font-family: Digital-7;
+    font-size: 186x;
+    justify-self: end;
+    grid-area: 3 / 8 / span 1 / span 1;
+}
+#toggle {
+    background-image: url("assets/images/carbon-fiber.png");
+    border-bottom: 2px #423d3c solid;
+    border-right: 2px #423d3c solid;
+    border-left: 2px #423d3c solid;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 40px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.toggle-initial {
+    visibility: hidden;
+}
+
+.toggle-visible {
+    animation: displaySettings 0.6s linear;
+    animation-iteration-count: initial;
+    visibility: visible;
+}
+
+.toggle-hidden {
+    animation: removeSettings 0.6s linear;
+    animation-iteration-count: initial;
+    visibility: hidden;
 }
 
 #step-backward {
@@ -116,3 +185,4 @@ body {
     position: relative;
     top: -20px;
 }
+

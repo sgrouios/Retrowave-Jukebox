@@ -79,6 +79,22 @@ function resetJukebox(){
     songNo = 0;
 }
 
+function settingsDisplay(){
+    var toggle = document.querySelector("#toggle");
+    if(toggle.className === "toggle-hidden" || toggle.className === "toggle-initial"){
+        toggle.className = "toggle-visible";
+    }
+    else{
+        toggle.className = "toggle-hidden";
+    }
+}
+
+function changeVolume(){
+    var volSlider = document.getElementById("volume").value;
+    document.getElementById("volumeNo").innerHTML = volSlider.toString();
+    volume = (volSlider) / 100;
+    songList[songNo].src.volume = volume;
+}
 /*Listens for DOM content loaded then runs*/
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("play").addEventListener("click", play);
@@ -88,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("rewind").addEventListener("click", rewind);
     document.getElementById("forward").addEventListener("click", forward);
     document.getElementById("step-forward").addEventListener("click", stepForward);
+    document.getElementById("settings").addEventListener("click", settingsDisplay);
+    document.getElementById("volume").addEventListener("input", changeVolume);
 });
 
 

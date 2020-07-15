@@ -1,11 +1,17 @@
 var songList = [{title:"M_O_O_N - Crystals", 
-                src: new Audio("assets/audio/M_O_O_N - Crystals.mp3")}, 
+                src: new Audio("assets/audio/M_O_O_N - Crystals.mp3"),
+                img: "assets/images/hotline-miami-cover.jpg"}, 
                 {title:"demin - Fresnel Tears", 
-                src: new Audio("assets/audio/demin - Vector Graphics - 04 Fresnel Tears.mp3")},
+                src: new Audio("assets/audio/demin - Vector Graphics - 04 Fresnel Tears.mp3"),
+                img: "assets/images/demin-cover.png"},
                 {title:"HOME - Flood", 
-                src: new Audio("assets/audio/Flood.mp3")},
+                src: new Audio("assets/audio/Flood.mp3"),
+                img: "assets/images/home-cover.png"},
                 {title:"Forhill - Apparition", 
-                src: new Audio("assets/audio/Forhill - Apparition.mp3")}];
+                src: new Audio("assets/audio/Forhill - Apparition.mp3"),
+                img: "assets/images/forhill-cover.jpg"}];
+
+var playlist = [];
 var songNo = 0;
 var volume = 0.5;
 var timeDisplay = setInterval(showTime, 1000);
@@ -26,8 +32,12 @@ function stepBackward(){
         songNo--;
         play();
     }
-    else
-        songList[songNo].src.currentTime = 0;
+    else{
+        resetSong();
+        songNo = songList.length - 1;
+        play();
+    }
+       
 }
 
 function rewind(){
@@ -74,6 +84,12 @@ function resetSong(){
     songList[songNo].src.pause();
     songList[songNo].src.currentTime = 0;
 }
+
+function shuffle(){
+    index = Math.floor(Math.random()  * 10);
+    console.log(index);
+}
+
 function resetJukebox(){
     document.getElementById("song-name").innerHTML = "Retrowave Jukebox";
     songNo = 0;
@@ -97,6 +113,35 @@ function changeVolume(){
 }
 /*Listens for DOM content loaded then runs*/
 document.addEventListener("DOMContentLoaded", function(){
+    let markup = "";
+    songList.forEach(function (song){
+        markup+=`<img src=${song.img} height="48" width="48"> <p class="song">${song.title}</p>`;
+    })
+
+    document.getElementsByClassName('playlist')[0].innerHTML += markup;
+
+    let songs = document.querySelectorAll(".song");
+
+    Array.from(songs, function(song){
+        song.addEventListener("click", function() {
+            if(song.className === "song"){
+                song.className = "song selected";
+
+                let songTitles = [];
+                //add each song from songList array to a list of titles
+                songList.forEach(function(song){
+                    songTitles.push(song.title)}
+                    );
+                //add index of song to playlist array
+                playlist.push(songTitles.findIndex(title => title === song.textContent));
+            }
+            else{
+                song.className = "song";
+            }
+                
+        })
+    });
+    
     document.getElementById("play").addEventListener("click", play);
     document.getElementById("stop").addEventListener("click", stop);
     document.getElementById("pause").addEventListener("click", pause);

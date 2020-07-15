@@ -49,18 +49,54 @@ body {
     background-size: cover;
 }
 
+.container {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr;
+    align-items: center;
+}
+
+.playlist {
+    align-self: start;
+    background-color: #393942;
+    box-shadow: 0px 0px 20px blueviolet;
+    display: grid;
+    grid-template: 1fr / 1fr 8fr;
+    margin: 0px auto;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.playlist img {
+    border: 1px blueviolet solid;
+    display: grid;
+    align-self: center;
+    box-shadow: 0px 0px 20px blueviolet;
+}
+
+.playlist p {
+    color: aqua;
+    font-family: Cyberspace Raceway;
+    font-size: 12px;
+    text-align: center;
+}
+
+.selected {
+    background-color: chartreuse;
+}
+
 .jukebox {
     align-items: center;
     background-image: url("assets/images/carbon-fiber.png");
     border-radius: 500px;
+    box-shadow: 0px 0px 100px blueviolet;
     display: grid;
     grid-template: repeat(3, 1fr) / 1fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 1fr;
     height: 200px;
     width: 700px;
     border: 2px #423d3c solid;
-    margin: 0 auto;
-    margin-top: 25%;
+    margin: 10px auto;
     justify-items: center;
+    align-self: end;
 }
 
 .timer {
@@ -74,6 +110,7 @@ body {
     width: 70px;
     text-align: center;
     align-self: end;
+    text-shadow: 1px 1px #558abb, -1px -1px #558abb, 1px 1px #558abb, -1px -1px #558abb;
 }
 
 .info {
@@ -92,10 +129,12 @@ body {
 .info p {
     animation: left_to_right 14s linear;
     animation-iteration-count: infinite;
+    text-shadow: 1px 1px #558abb, -1px -1px #558abb, 1px 1px #558abb, -1px -1px #558abb;
 }
 .jukebox-button {
     background-color: blueviolet;
     border: 1px solid aqua;
+    box-shadow: 2px 2px 3px blueviolet, -2px -2px 3px blueviolet;
     margin: 6px;
     height: 30%;
     width: 88%;
@@ -141,6 +180,8 @@ input + p {
     height: 40px;
     width: 300px;
     margin: 0 auto;
+    position: relative;
+    bottom: 25px;
 }
 
 .toggle-initial {
@@ -181,8 +222,32 @@ input + p {
 #step-forward {
     grid-area: 2 / 8 / span 1 / span 1;
 }
+
+#shuffle {
+    align-self: end;
+    position: relative;
+    top: -5px;
+    grid-area: 3 / 5 / span 1 / span 1;
+}
 #stop, #play, #pause {
     position: relative;
     top: -20px;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+  }
 

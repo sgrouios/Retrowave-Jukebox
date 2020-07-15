@@ -1,0 +1,8 @@
+Playlist function
+-> make them click events that change the style of the row (pushed in and turns green)
+-> adds song to playlist array
+-> if clicked when active, remove song
+
+-> on-click, can I determine which row was clicked without ids?
+
+-> add html based on how many array objects in javascript

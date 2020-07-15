@@ -2,13 +2,18 @@
 <html>
 <head>
   <title>Retrowave Jukebox</title>
+  <link rel="shortcut icon" href="assets/icons/radio-favicon.png">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="assets/icons/font-awesome-4.7.0/css/font-awesome.min.css">
   <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
+  <div class="container">
+    <div class="playlist">
+
+    </div>
     <div class="jukebox">
-        <div class=timer><span id="songTime"></span></div><!---Why does changing #songTime to <p> change things?-->
+        <div class=timer><span id="songTime"></span></div>
         <button type="button" class="jukebox-button" id="step-backward">
           <i class="fa fa-step-backward" aria-hidden="true"></i>
         </button>
@@ -30,10 +35,14 @@
         <button type="button" class="jukebox-button" id="step-forward">
           <i class="fa fa-step-forward" aria-hidden="true"></i>
         </button>
+        <button type="button" class="jukebox-button" id="shuffle">
+          <i class="fa fa-random" aria-hidden="true"></i>
+        </button>
         <div class="info"><p id="song-name">Retrowave Jukebox</p></div>
         <i id = "settings" class="fa fa-cog fa-lg" aria-hidden="true"></i>
         <input type="range" min="0" max="100" value="50" id="volume"><p id="volumeNo">50</p>
     </div>
+  </div>
     <div id="toggle" class="toggle-initial"></div>
 </body>
 </html>

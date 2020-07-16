@@ -33,27 +33,32 @@ function showTime(){
 }
 
 function stepBackward(){
-    if(songNo != 0){
-        resetSong();
-        songNo--;
-        play();
-    }
-    else{
-        resetSong();
-        songNo = playlist.length - 1;
-        play();
+    if(playlist.length != 0){
+        if(songNo != 0){
+            resetSong();
+            songNo--;
+            play();
+        }
+        else{
+            resetSong();
+            songNo = playlist.length - 1;
+            play();
+        }
     }
 }
 
 function rewind(){
-    songList[playlist[songNo]].src.currentTime -= 5;
+    if(playlist.length != 0)
+        songList[playlist[songNo]].src.currentTime -= 5;
 }
 
 function stop(){
-    resetPlaylistSelections();
-    resetSong();
-    resetJukebox();
-    playlist = [];
+    if(playlist.length != 0){
+        resetPlaylistSelections();
+        resetSong();
+        resetJukebox();
+        playlist = [];
+    }
 }
 
 function play(){
@@ -73,26 +78,30 @@ function play(){
 }
 
 function pause(){
-    songList[playlist[songNo]].src.pause();
+    if(playlist.length != 0)
+        songList[playlist[songNo]].src.pause();
 }
 
 function forward(){
-    songList[playlist[songNo]].src.currentTime += 5;
+    if(playlist.length != 0)
+        songList[playlist[songNo]].src.currentTime += 5;
 }
 
 function stepForward(){
-    if(songNo < playlist.length - 1){
-        resetSong();
-        songNo++;
-        play();
-    }
-    else{
-        resetSong();
-        if(shuffleState){
-            shuffleSongs();
+    if(playlist.length != 0){
+        if(songNo < playlist.length - 1){
+            resetSong();
+            songNo++;
+            play();
         }
-        songNo = 0;
-        play();
+        else{
+            resetSong();
+            if(shuffleState){
+                shuffleSongs();
+            }
+            songNo = 0;
+            play();
+        }
     }
 }
 

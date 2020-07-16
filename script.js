@@ -28,7 +28,7 @@ function showTime(){
         if (seconds < 10) {
           seconds = `0${seconds}`;
         }
-        document.getElementById("songTime").innerHTML = `0${minutes}:${seconds}`;
+        document.getElementById("songTime").innerHTML = `0${minutes}.${seconds}`;
     }
 }
 
@@ -88,7 +88,12 @@ function stepForward(){
     }
     else{
         resetSong();
-        shuffleSongs();
+        if(shuffleState){
+            shuffleSongs();
+        }
+        else{
+            songNo = 0;
+        }
         play();
     }
 }
@@ -101,10 +106,10 @@ function resetSong(){
 function shuffleSongs(){
     //Shuffle playlist
     console.log("Original playlist: " + playlist);
+    //Get the original index of the last song playing before shuffle in order to stop
     let songPlaying = playlist[songNo];
-    let currentSong = songList.findIndex(function(song){
-        return song.title === songList[songPlaying].title
-    });
+    console.log("Original index of songPlaying: " + songPlaying);
+
     var j, x, i;
     for (i = playlist.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
@@ -114,8 +119,12 @@ function shuffleSongs(){
     }
 
     songNo = playlist.findIndex(function(song){
-        return song == currentSong;
+        return song == songPlaying;
     });
+
+    //songNo = 0;
+
+    console.log("Song number found: " + songNo);
 
     console.log("Shuffled playlist: " + playlist);
 }
@@ -126,7 +135,8 @@ function shuffleClicked(){
     if(document.getElementById("shuffle").className === "jukebox-button"){
         document.getElementById("shuffle").className = "jukebox-button shuffle-on";
         shuffleState = true;
-        shuffleSongs(); 
+        if(playlist != 0)
+            shuffleSongs(); 
     }
     else{
         document.getElementById("shuffle").className = "jukebox-button";
@@ -167,7 +177,7 @@ function shuffleClicked(){
 
 function resetJukebox(){
     document.getElementById("song-name").innerHTML = "Retrowave Jukebox";
-    document.getElementById("songTime").innerHTML = "00:00";
+    document.getElementById("songTime").innerHTML = "00.00";
     songNo = 0;
 }
 

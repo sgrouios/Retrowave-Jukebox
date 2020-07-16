@@ -4,8 +4,8 @@
 }
 
 @font-face {
-    font-family: "Digital-7";
-    src: url(assets/fonts/digital-7/digital-7.ttf) format('truetype');
+    font-family: "Segment7Standard";
+    src: url(assets/fonts/Segment7Standard.otf) format('opentype')/*url(assets/fonts/digital-7/digital-7.ttf) format('truetype')*/;
 }
 
 @keyframes left_to_right {
@@ -107,18 +107,24 @@ body {
 }
 
 .timer {
+    display: grid;
     background-color: #393942;
     border: 2px solid black;
     color: aqua;
     /*#8b9ead*/
-    font-family: Digital-7;
-    font-size: 28px;
+    font-family: Segment7Standard;
+    font-size: 22px;
     grid-area: 1 / 5 / span 1 / span 1;
     padding: 3px;
     width: 70px;
-    text-align: center;
     align-self: end;
+    text-align: center;
     text-shadow: 1px 1px #558abb, -1px -1px #558abb, 1px 1px #558abb, -1px -1px #558abb;
+}
+
+#songTime {
+    position: relative;
+    top: 2px;
 }
 
 .info {
@@ -271,5 +277,6 @@ input+p {
 
 ::-webkit-scrollbar-thumb {
     background: grey;
+    height: 50%;
     border-radius: 10px;
 }

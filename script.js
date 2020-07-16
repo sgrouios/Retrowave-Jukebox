@@ -91,9 +91,7 @@ function stepForward(){
         if(shuffleState){
             shuffleSongs();
         }
-        else{
-            songNo = 0;
-        }
+        songNo = 0;
         play();
     }
 }
@@ -142,37 +140,7 @@ function shuffleClicked(){
         document.getElementById("shuffle").className = "jukebox-button";
         shuffleState = false;
     }
-
-    /*if(playlist.length > 0){
-
-        let songPlaying = playlist[songNo];
-        let currentSong = songList.findIndex(function(song){
-            return song.title === songList[songPlaying].title
-        });
-
-        let i = 1;
-        let shufflePlaylist = [];
-        shufflePlaylist.push(Math.floor(Math.random() * playlist.length));
-    
-        while(i < playlist.length){
-            let newIndex = Math.floor(Math.random() * playlist.length);
-            if(shufflePlaylist.findIndex(index => index == newIndex) == -1){
-                shufflePlaylist.push(newIndex);
-                i++;
-            }
-        }
-        playlist = [];
-    
-        for(var x = 0; x < shufflePlaylist.length; x++){
-            playlist.push(shufflePlaylist[x]);
-        }
-    
-        //must replace songNo with current song in new array
-        songNo = playlist.findIndex(function(song){
-            return song == currentSong;
-        });*/
-
-    }
+}
 
 
 function resetJukebox(){

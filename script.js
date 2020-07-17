@@ -16,6 +16,8 @@ var songList = [{title:"demin - Fresnel Tears",
 
 var playlist = [];
 var shuffleState = false;
+var shufflePlaylist = [];
+var shuffleIndex = 0;
 var songNo = 0;
 var volume = 0.5;
 var timeDisplay = setInterval(showTime, 1000);
@@ -34,16 +36,35 @@ function showTime(){
 
 function stepBackward(){
     if(playlist.length != 0){
-        if(songNo != 0){
+        if(shuffleState && shufflePlaylist.length != 0){
+            if(songNo != shufflePlaylist[shufflePlaylist.length - 1] &&
+                shuffleIndex == shufflePlaylist.length -1){
+                    shufflePlaylist.push(songNo);
+                    shuffleIndex = shufflePlaylist.length - 1;
+                }                
             resetSong();
-            songNo--;
-            play();
-        }
-        else{
-            resetSong();
-            songNo = playlist.length - 1;
-            play();
-        }
+            if(shuffleIndex != 0){
+                shuffleIndex--;   
+            }               
+            else{
+                shuffleIndex = shufflePlaylist.length -1;
+            }            
+            songNo = shufflePlaylist[shuffleIndex];
+            console.log("Shuffle index: " + shuffleIndex);
+            console.log("Song number: " + songNo);
+            console.log("Current shuffle playlist: " + shufflePlaylist);
+            play();      
+            }
+            else if(songNo != 0){
+                resetSong();
+                songNo--;
+                play();
+            }
+            else{
+                resetSong();
+                songNo = playlist.length - 1;
+                play();
+            }
     }
 }
 
@@ -89,7 +110,25 @@ function forward(){
 
 function stepForward(){
     if(playlist.length != 0){
-        if(songNo < playlist.length - 1){
+        if(shuffleState){
+            if((shuffleIndex == shufflePlaylist.length -1 && shufflePlaylist[shuffleIndex] != songNo) 
+            || shufflePlaylist.length == 0){
+                shufflePlaylist.push(songNo);
+                shuffleIndex = shufflePlaylist.length - 1;
+            }       
+            resetSong();
+            if(shuffleIndex == shufflePlaylist.length -1){
+                shuffleSongs();
+            }      
+            else{
+                shuffleIndex++;
+                songNo = shufflePlaylist[shuffleIndex];
+            }                 
+            play();
+            console.log("Updated shuffle playlist: " + shufflePlaylist);
+            console.log("Shuffle index: " + shuffleIndex);
+        }
+        else if(songNo < playlist.length - 1){
             resetSong();
             songNo++;
             play();
@@ -111,39 +150,21 @@ function resetSong(){
 }
 
 function shuffleSongs(){
-    //Shuffle playlist
-    console.log("Original playlist: " + playlist);
-    //Get the original index of the last song playing before shuffle in order to stop
-    let songPlaying = playlist[songNo];
-    console.log("Original index of songPlaying: " + songPlaying);
+    let currentSong = songNo;
+    do{
+        let randomNo;
 
-    var j, x, i;
-    for (i = playlist.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = playlist[i];
-        playlist[i] = playlist[j];
-        playlist[j] = x;
-    }
-
-    songNo = playlist.findIndex(function(song){
-        return song == songPlaying;
-    });
-
-    //songNo = 0;
-
-    console.log("Song number found: " + songNo);
-
-    console.log("Shuffled playlist: " + playlist);
+        randomNo = Math.floor(Math.random() * playlist.length);
+        if(randomNo != songNo){
+            songNo = randomNo;
+        } 
+    }while(songNo == currentSong);
 }
 
 function shuffleClicked(){
-    /*When songs are exhausted shuffle again*/
-
     if(document.getElementById("shuffle").className === "jukebox-button"){
         document.getElementById("shuffle").className = "jukebox-button shuffle-on";
         shuffleState = true;
-        if(playlist != 0)
-            shuffleSongs(); 
     }
     else{
         document.getElementById("shuffle").className = "jukebox-button";
@@ -225,13 +246,3 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("shuffle").addEventListener("click", shuffleClicked);
     document.getElementById("volume").addEventListener("input", changeVolume);
 });
-
-
-/*HTMLMediaElement.currentTime
-A double-precision floating-point value indicating the current playback time in seconds*/
-/*HTMLMediaElement.currentTime
-A double-precision floating-point value indicating the current playback time in seconds */
-/*HTMLMediaElement.ended Read only
-Returns a Boolean that indicates whether the media element has finished playing. */
-/*HTMLMediaElement.loop
-A Boolean that reflects the loop HTML attribute, which indicates whether the media element should start over when it reaches the end. */

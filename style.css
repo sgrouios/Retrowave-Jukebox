@@ -252,7 +252,12 @@ input+p {
 }
 
 .shuffle-on {
-    background-color: lawngreen;
+    background-color: aqua;
+    border: 1px solid blueviolet;
+}
+
+.shuffle-on i {
+    color: blueviolet;
 }
 
 #stop, #play, #pause {

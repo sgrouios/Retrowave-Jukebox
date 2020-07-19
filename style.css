@@ -19,26 +19,6 @@
     }
 }
 
-@keyframes displaySettings {
-    0% {
-        height: 0px;
-    }
-    100% {
-        height: 40px;
-    }
-}
-
-@keyframes removeSettings {
-    0% {
-        height: 40px;
-        visibility: visible;
-    }
-    100% {
-        height: 0px;
-        visibility: hidden;
-    }
-}
-
 * {
     box-sizing: border-box;
 }
@@ -78,7 +58,8 @@ body {
     font-family: Cyberspace Raceway;
     font-size: 12px;
     text-align: center;
-    text-shadow: 1px 1px black, 2px 2px black, -1px -1px black;
+    text-shadow: 0px 0px 5px black, 2px 2px 15px blueviolet, 
+    1px 1px 15px blueviolet, -1px -1px 15px blueviolet, -2px -2px 15px blueviolet;
 }
 
 .song {
@@ -87,7 +68,6 @@ body {
 }
 
 .selected {
-    /* background-color: chartreuse; */
     opacity: 0.5;
 }
 
@@ -111,7 +91,6 @@ body {
     background-color: #393942;
     border: 2px solid black;
     color: aqua;
-    /*#8b9ead*/
     font-family: Segment7Standard;
     font-size: 22px;
     grid-area: 1 / 5 / span 1 / span 1;
@@ -153,6 +132,7 @@ body {
     margin: 6px;
     height: 30%;
     width: 88%;
+    outline: none;
 }
 
 .jukebox-button:hover {
@@ -165,55 +145,22 @@ body {
     color: aqua;
 }
 
-#settings {
-    cursor: pointer;
-    color: grey;
-    justify-self: end;
-    grid-area: 3 / 2 / span 1 / span 1;
-}
-
 #volume {
     cursor: pointer;
     grid-area: 3 / 7 / span 1 / span 2;
+    width: 70%;
     opacity: 0.7;
 }
 
 input+p {
-    color: aqua;
+    color: #10e0e0;
     font-family: Cyberspace Raceway;
     font-size: 10px;
     justify-self: end;
     grid-area: 3 / 8 / span 1 / span 1;
-}
-
-#toggle {
-    background-image: url("assets/images/carbon-fiber.png");
-    border-bottom: 2px #423d3c solid;
-    border-right: 2px #423d3c solid;
-    border-left: 2px #423d3c solid;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    height: 40px;
-    width: 300px;
-    margin: 0 auto;
-    position: relative;
-    bottom: 25px;
-}
-
-.toggle-initial {
-    visibility: hidden;
-}
-
-.toggle-visible {
-    animation: displaySettings 0.6s linear;
-    animation-iteration-count: initial;
-    visibility: visible;
-}
-
-.toggle-hidden {
-    animation: removeSettings 0.6s linear;
-    animation-iteration-count: initial;
-    visibility: hidden;
+    margin-right: -5px;
+    text-shadow: 2px 2px 5px blueviolet, 1px 1px 5px blueviolet, 
+    -1px -1px 5px blueviolet, -2px -2px 5px blueviolet;
 }
 
 #step-backward {
@@ -285,3 +232,96 @@ input+p {
     height: 50%;
     border-radius: 10px;
 }
+
+/* Volume slider */
+input[type=range] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+  }
+
+/*input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  } */
+
+input[type=range]:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+  }
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+  
+    /* Hides the slider so custom styles can be added */
+    background: transparent; 
+    border-color: transparent;
+    color: transparent;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 13px;
+    width: 20px;
+    border-radius: 3px;
+    background: aqua;
+    cursor: pointer;
+    margin-top: -2.5px;
+    box-shadow: 0px 0px 3px 0px blueviolet inset;
+  }
+
+  input[type=range]::-moz-range-thumb {
+    -webkit-appearance: none;
+    height: 13px;
+    width: 20px;
+    border-radius: 3px;
+    background: aqua;
+    cursor: pointer;
+    margin-top: -2.5px;
+    box-shadow: 0px 0px 3px 0px blueviolet inset; 
+  }
+
+  input[type=range]::-ms-thumb {
+    -webkit-appearance: none;
+    height: 13px;
+    width: 20px;
+    border-radius: 3px;
+    background: aqua;
+    cursor: pointer;
+    margin-top: -2.5px;
+    box-shadow: 0px 0px 3px 0px blueviolet inset;
+ }
+
+ /* Track */
+ input[type=range]::-webkit-slider-runnable-track {
+    height: 8.4px;
+    cursor: pointer;
+    background: aqua;
+    border-radius: 1.3px;
+    box-shadow: 0px 0px 1px 4px blueviolet;
+  }
+
+input[type=range]::-moz-range-track {
+    height: 8.4px;
+    cursor: pointer;
+    background: aqua;
+    border-radius: 1.3px;
+    box-shadow: 0px 0px 1px 4px blueviolet; 
+}
+
+input[type=range]::-ms-track {
+    height: 8.4px;
+    cursor: pointer;
+    background: aqua;
+    border-radius: 1.3px;
+    box-shadow: 0px 0px 1px 4px blueviolet;
+}
+
+input[type=range]::-ms-fill-upper {
+    height: 8.4px;
+    cursor: pointer;
+    background: grey;
+    border-radius: 1.3px;
+    box-shadow: 0px 0px 1px 4px blueviolet;
+  }
+
+

@@ -50,9 +50,6 @@ function stepBackward(){
                 shuffleIndex = shufflePlaylist.length -1;
             }            
             songNo = shufflePlaylist[shuffleIndex];
-            console.log("Shuffle index: " + shuffleIndex);
-            console.log("Song number: " + songNo);
-            console.log("Current shuffle playlist: " + shufflePlaylist);
             play();      
             }
             else if(songNo != 0){
@@ -125,8 +122,6 @@ function stepForward(){
                 songNo = shufflePlaylist[shuffleIndex];
             }                 
             play();
-            console.log("Updated shuffle playlist: " + shufflePlaylist);
-            console.log("Shuffle index: " + shuffleIndex);
         }
         else if(songNo < playlist.length - 1){
             resetSong();
@@ -187,16 +182,6 @@ function resetPlaylistSelections(){
     })
 }
 
-function settingsDisplay(){
-    var toggle = document.querySelector("#toggle");
-    if(toggle.className === "toggle-hidden" || toggle.className === "toggle-initial"){
-        toggle.className = "toggle-visible";
-    }
-    else{
-        toggle.className = "toggle-hidden";
-    }
-}
-
 function changeVolume(){
     var volSlider = document.getElementById("volume").value;
     document.getElementById("volumeNo").innerHTML = volSlider.toString();
@@ -230,8 +215,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 //remove song that has been de-selected
                 playlist.splice(playlist.findIndex(index => index === song.dataset.index), 1);
             }
-
-            console.log(playlist);
         })
     });
     
@@ -242,7 +225,6 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("rewind").addEventListener("click", rewind);
     document.getElementById("forward").addEventListener("click", forward);
     document.getElementById("step-forward").addEventListener("click", stepForward);
-    document.getElementById("settings").addEventListener("click", settingsDisplay);
     document.getElementById("shuffle").addEventListener("click", shuffleClicked);
     document.getElementById("volume").addEventListener("input", changeVolume);
 });
